@@ -22,6 +22,9 @@ import {TableService} from './table.service';
 import {  Http, RequestOptions } from '@angular/http';
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { CreateTableComponent } from './create-table/create-table.component';
+import { SelectTableComponent } from './select-table/select-table.component';
+import { CreateMenuComponent } from './create-menu/create-menu.component';
+import { TableDetailsComponent } from './table-details/table-details.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
@@ -37,6 +40,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     LogInComponent,
     SignUpComponent,
     CreateTableComponent,
+    SelectTableComponent,
+    CreateMenuComponent,
+    TableDetailsComponent,
   ],
   imports: [
     BrowserModule,

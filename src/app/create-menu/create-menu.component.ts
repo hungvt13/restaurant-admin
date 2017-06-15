@@ -4,13 +4,12 @@ import { AuthHttp ,JwtHelper} from 'angular2-jwt';
 import { Http } from '@angular/http';
 import { TableService } from '../table.service';
 
-
 @Component({
-  selector: 'app-create-table',
-  templateUrl: './create-table.component.html',
-  styleUrls: ['./create-table.component.css']
+  selector: 'app-create-menu',
+  templateUrl: './create-menu.component.html',
+  styleUrls: ['./create-menu.component.css']
 })
-export class CreateTableComponent implements OnInit {
+export class CreateMenuComponent implements OnInit {
 
   jwt: string;
   jwtDate: any;
@@ -32,4 +31,3 @@ export class CreateTableComponent implements OnInit {
   }
 
 }
-
