@@ -4,31 +4,35 @@ import { Http } from '@angular/http';
 @Injectable()
 export class TableService {
 
-  public tableList = []; // for JSON DATA
-  public table: Array<Table> = []; //list to store table objects
+  //public tableList = []; // for JSON DATA
+  public tableList: Array<Table> = []; //list to store table objects
   
 
   constructor(public http: Http) { 
-    this.table.push(new Table(1));
-    this.table.push(new Table(2));
-    this.table.push(new Table(3));
-    this.table.push(new Table(4));
-
+    this.getList();
+    console.log(this.tableList);
   }
 
   addTable(num: number){
-    this.table.push(new Table (num));
+    //this.table.push(new Table (num));
   }
 
 
   getTable(){
-    return this.table;
+    //return this.table;
   }
 
   getList(){
     var eventData: any = this.http.get('http://kiemsi-khatmau.000webhostapp.com/api/product/test.php');
     eventData.subscribe(info => {
                   let response = JSON.parse(info._body);
+                  for(var item in response){
+                    //console.log(response[item].id);
+                    var id = response[item].id;
+                    var active = response[item].active;
+                    //not yet pass in the menu object
+                    this.tableList.push(new Table(id,active));
+                  }
                   console.log(response);
             });
   }
@@ -38,10 +42,13 @@ export class TableService {
 //class for a Table
 class Table {
   tableNo: number;
+  isActive: boolean;
   menuList: Menu;
   
-  constructor(tableNo: number){
-    this.tableNo = tableNo;
+  constructor(num, active){
+    this.tableNo = num;
+    if(active === 0) this.isActive = false;
+    else this.isActive = true;
   }
 }
 

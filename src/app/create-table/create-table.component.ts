@@ -27,7 +27,6 @@ export class CreateTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tableService.getList();
   }
 
 }

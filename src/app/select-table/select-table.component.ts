@@ -19,14 +19,20 @@ export class SelectTableComponent implements OnInit {
   api: string;
   jwtHelper: JwtHelper = new JwtHelper();
 
+  private loading: boolean;
+
   constructor(public router: Router, public http: Http, public authHttp: AuthHttp, public tableService: TableService) {
     this.jwt = localStorage.getItem('id_token');
     this.decodedJwt = this.jwtHelper.decodeToken(this.jwt);
     this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.jwt);
     this.jwtExpired = this.jwtHelper.isTokenExpired(this.jwt);
+    
    }
 
   ngOnInit() {
+  }
+
+  ngDoCheck(){
   }
 
 }
