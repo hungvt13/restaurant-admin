@@ -5,6 +5,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { AuthGuardService } from '../auth-guardn.service';
 import { LogInComponent } from '../log-in/log-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { CreateTableComponent } from '../create-table/create-table.component';
 
 
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {path:'login',  component: LogInComponent },
   {path:'signup',  component: SignUpComponent },
   {path:'home',   component: MyHomeComponent, canActivate: [AuthGuardService] },
-  {path:'**', component: LogInComponent},
+  {path:'create-table',   component: CreateTableComponent, canActivate: [AuthGuardService] },
+  {path:'**', redirectTo: ''},
 ];
 

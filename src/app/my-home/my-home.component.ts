@@ -11,7 +11,7 @@ import { AuthHttp ,JwtHelper} from 'angular2-jwt';
 })
 export class MyHomeComponent implements OnInit {
 
-  token: string;
+  jwt: string;
   jwtDate: any;
   jwtExpired: any;
   decodedJwt: string;
@@ -22,10 +22,10 @@ export class MyHomeComponent implements OnInit {
   constructor(public router: Router, public http: Http, public authHttp: AuthHttp) {
     //this.jwt = localStorage.getItem('id_token');
     //this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);
-    this.token = localStorage.getItem('id_token');
-    this.decodedJwt = this.jwtHelper.decodeToken(this.token);
-    this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.token);
-    this.jwtExpired = this.jwtHelper.isTokenExpired(this.token);
+    this.jwt = localStorage.getItem('id_token');
+    this.decodedJwt = this.jwtHelper.decodeToken(this.jwt);
+    this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.jwt);
+    this.jwtExpired = this.jwtHelper.isTokenExpired(this.jwt);
    }
 
   ngOnInit() {
@@ -34,6 +34,14 @@ export class MyHomeComponent implements OnInit {
   logout() {
     localStorage.removeItem('id_token');
     this.router.navigate(['login']);
+  }
+
+  callAnonymousApi() {
+    this._callApi('Anonymous', 'http://localhost:3001/api/random-quote');
+  }
+
+  callSecuredApi() {
+    this._callApi('Secured', 'http://localhost:3001/api/protected/random-quote');
   }
 
   _callApi(type, url) {

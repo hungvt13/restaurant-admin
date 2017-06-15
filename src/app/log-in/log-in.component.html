@@ -1,17 +1,8 @@
-<div class="login jumbotron center-block">
-  <h1>Login</h1>
-  <form role="form" (submit)="login($event, username.value, password.value)">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" #username class="form-control" id="username" placeholder="Username">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" #password class="form-control" id="password" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-  <a class="btn btn-success" (click)="auth.login()" *ngIf="!auth.loggedIn()">Log In</a>
+<div class = "container container-table">
+  <div class="login jumbotron center-block text-center ">
+    <p class="h1">Quán ăn</p>
 
-    <a [routerLink]="['/signup']">Click here to Signup</a>
-</form>
+    <br>
+    <button class="btn-lg btn-success" (click)="auth.login()" *ngIf="!auth.loggedIn()">Đăng nhập</button>
+  </div>
 </div>

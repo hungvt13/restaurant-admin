@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/filter';
+
+
 
 declare var Auth0Lock: any;
+declare var Auth0: any;
 
 @Injectable()
 export class AuthService {
   // Set our Auth0 credentials
-  lock = new Auth0Lock('YOUR-AUTH0-CLIENT-ID', 'YOUR-AUTH0-DOMAIN.auth0.com');
+  lock = new Auth0Lock('41GLvXahNTywSbRUnFCW3Y6UBw4KjWiF', 'ako2013.auth0.com');
+  auth0 = new Auth0({clientID: '41GLvXahNTywSbRUnFCW3Y6UBw4KjWiF', domain: 'ako2013.auth0.com'});
 
   constructor(private router: Router) {
     // Capture the user credentials when the user has succesfully logged in
     this.lock.on('authenticated', (authResult: any) => {
       localStorage.setItem('id_token', authResult.idToken);
+      //console.log(authResult);
 
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
         if (error) {
@@ -24,6 +31,27 @@ export class AuthService {
       });
 
       this.lock.hide();
+    });
+    
+    this.handleRedirectWithHash();
+  }
+
+  private handleRedirectWithHash() {
+    this.router.events.take(1).subscribe((event:any) => {
+      if (/access_token/.test(event.url) || /error/.test(event.url)) {  
+        
+
+        let authResult = this.auth0.parseHash(window.location.hash);
+        //console.log(authResult);
+
+        if (authResult && authResult.idToken) {
+          this.lock.emit('authenticated', authResult);
+        }
+
+        if (authResult && authResult.error) {
+          this.lock.emit('authorization_error', authResult);
+        }
+      }
     });
   }
 
