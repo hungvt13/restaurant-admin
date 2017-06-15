@@ -29,9 +29,9 @@ export class TableService {
                   for(var item in response){
                     //console.log(response[item].id);
                     var id = response[item].id;
-                    var active = response[item].active;
+                    var active2 = response[item].active;
                     //not yet pass in the menu object
-                    this.tableList.push(new Table(id,active));
+                    this.tableList.push(new Table(id,active2));
                   }
                   console.log(response);
             });
@@ -47,7 +47,7 @@ class Table {
   
   constructor(num, active){
     this.tableNo = num;
-    if(active === 0) this.isActive = false;
+    if(active == 0) this.isActive = false;
     else this.isActive = true;
   }
 }

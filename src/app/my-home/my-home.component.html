@@ -1,18 +1,25 @@
   <app-nav-bar></app-nav-bar>
-      <p><a class="btn btn-primary btn-lg" role="button" (click)="logout()">Logout</a></p>
   <div class="row">
     <div class="col-sm-2">
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="/home">Home</a></li>
+        <li class="active"><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/select-table">Chọn bàn <span class="badge">9</span></a></li>
         <li><a routerLink="/create-table">Tạo bàn</a></li>
-        <li><a routerLink="/select-table">Chọn bàn</a></li>
-        <li><a routerLink="/create-menu">Tạo menu</a></li>
+        <li><a routerLink="/create-menu">Chỉnh menu</a></li>
       </ul>
     </div>
-    <div class="col-sm-5">
-      <router-outlet></router-outlet>
+    <div class="col-sm-8">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Lưu ý!</strong> Website đang được phát triển.
+      </div>
+      <div class="jumbotron">
+        <h1>Xin Chào!</h1>
+        <p>Welcome to Home Page</p>
+        <p><a class="btn btn-success btn-lg disabled" role="button">Disabled button</a></p>
+      </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-2">
 
     </div>
   </div>
