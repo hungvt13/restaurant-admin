@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AngularFireModule } from 'angularfire2';
-
-import { environment } from './environment';
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 
@@ -46,7 +43,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes, {

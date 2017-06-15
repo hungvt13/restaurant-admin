@@ -4,7 +4,6 @@ import { AuthHttp ,JwtHelper} from 'angular2-jwt';
 import { Http } from '@angular/http';
 import { TableService } from '../table.service';
 
-
 @Component({
   selector: 'app-create-table',
   templateUrl: './create-table.component.html',
@@ -20,15 +19,15 @@ export class CreateTableComponent implements OnInit {
   api: string;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(public router: Router, public http: Http, public authHttp: AuthHttp, public tableService: TableService) { 
+  constructor(tableServie: TableService, public router: Router, public http: Http, public authHttp: AuthHttp, public tableService: TableService) { 
     this.jwt = localStorage.getItem('id_token');
     this.decodedJwt = this.jwtHelper.decodeToken(this.jwt);
     this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.jwt);
     this.jwtExpired = this.jwtHelper.isTokenExpired(this.jwt);
-
   }
 
   ngOnInit() {
+    this.tableService.getList();
   }
 
 }
