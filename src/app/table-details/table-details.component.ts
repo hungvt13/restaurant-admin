@@ -24,7 +24,6 @@ export class TableDetailsComponent implements OnInit {
 
     this.totalPrice = 0;
     this.totalItem = 0;
-    this.stringPrice = '';
    }
 
   ngOnInit() {
@@ -34,7 +33,7 @@ export class TableDetailsComponent implements OnInit {
        // In a real app: dispatch action to load the details here.
        this.tableService.addMenuList(this.id);
        this.uniqueMenuList = this.tableService.getMenuList(this.id);
-       
+      
     });
        
   }
@@ -66,7 +65,8 @@ export class TableDetailsComponent implements OnInit {
     this.totalItem += 1;
 
     //get the string version 
-    this.stringPrice = this.numberWithCommas(this.totalPrice);
+    this.tableService.addMenuListTotalPrice(this.id,this.numberWithCommas(this.totalPrice));
+    this.stringPrice = this.tableService.getMenuListTotalPrice(this.id);
   }
 
   //format number to currency 

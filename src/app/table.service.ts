@@ -50,8 +50,10 @@ export class TableService {
   public addMenuList(num){
 
     //clone object arary
+    if(this.instanceMenuList.filter(x => x.id == num)[0] != null){
+      return;
+    }
     let tempList = this.menuList.map(x => Object.assign({}, x));
-
     this.instanceMenuList.push(new List(num,tempList));
 
     console.log(this.instanceMenuList);
@@ -59,6 +61,15 @@ export class TableService {
 
   public getMenuList(num){
     return this.instanceMenuList.filter(x => x.id == num)[0].list;
+  }
+
+  public addMenuListTotalPrice(num, price){
+    this.instanceMenuList.filter(x => x.id == num)[0].totalPrice = price;
+    console.log(this.instanceMenuList);
+  }
+
+  public getMenuListTotalPrice(num){
+    return this.instanceMenuList.filter(x => x.id == num)[0].totalPrice;
   }
 
   
@@ -102,9 +113,11 @@ class Item{
 class List{
   id: string;
   list: any;
+  totalPrice: string;
 
   constructor(id, list){
     this.id = id;
     this.list = list;
+    this.totalPrice = '';
   }
 }
