@@ -18,6 +18,7 @@ export class SelectTableComponent implements OnInit {
   response: string;
   api: string;
   jwtHelper: JwtHelper = new JwtHelper();
+  isAvailable: boolean = false;
 
   private loading: boolean;
 
@@ -26,13 +27,14 @@ export class SelectTableComponent implements OnInit {
     this.decodedJwt = this.jwtHelper.decodeToken(this.jwt);
     this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.jwt);
     this.jwtExpired = this.jwtHelper.isTokenExpired(this.jwt);
-    
    }
 
   ngOnInit() {
+
   }
 
   ngDoCheck(){
+    if(this.tableService.menuList != null) this.isAvailable = true;
   }
 
 }

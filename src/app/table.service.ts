@@ -66,7 +66,7 @@ export class TableService {
 
   public addMenuListTotalPrice(num, price){
     this.instanceMenuList.filter(x => x.id == num)[0].totalPrice += price;
-    //console.log(this.instanceMenuList);
+    console.log(this.instanceMenuList);
   }
 
   public subMenuListTotalPrice(num, price){
@@ -76,6 +76,16 @@ export class TableService {
 
   public getMenuListTotalPrice(num){
     return this.numberWithCommas(this.instanceMenuList.filter(x => x.id == num)[0].totalPrice);
+  }
+
+  public getMenuListTotalItem(num){
+    var total = 0;
+    for(var item in this.instanceMenuList.filter(x => x.id == num)[0].list){
+      if(this.instanceMenuList.filter(x => x.id == num)[0].list[item].itemQuantity != 0){
+        total += this.instanceMenuList.filter(x => x.id == num)[0].list[item].itemQuantity;
+      }
+    }
+    return total;
   }
 
   //format number to currency 

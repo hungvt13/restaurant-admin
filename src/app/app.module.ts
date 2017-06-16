@@ -22,6 +22,7 @@ import { CreateTableComponent } from './create-table/create-table.component';
 import { SelectTableComponent } from './select-table/select-table.component';
 import { CreateMenuComponent } from './create-menu/create-menu.component';
 import { TableDetailsComponent } from './table-details/table-details.component';
+import { ReceiptViewComponent } from './receipt-view/receipt-view.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
@@ -40,6 +41,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SelectTableComponent,
     CreateMenuComponent,
     TableDetailsComponent,
+    ReceiptViewComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,10 @@
 <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
 
 <div class ="container">
-    <div class="btn-toolbar" role="toolbar" aria-label="...">
+    <div *ngIf="!isAvailable"> 
+        <a class="btn btn-danger btn-sm disabled" role="button">Đang lấy thông tin menu...</a>
+    </div><br>
+    <div *ngIf="isAvailable"  class="btn-toolbar" role="toolbar" aria-label="...">
     <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
         <a [routerLink] = "['/table-details', item.tableNo]">
         <button type="button" class="btn-lg btn-primary">bàn {{item.tableNo}}</button>

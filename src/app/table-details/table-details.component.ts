@@ -33,16 +33,6 @@ export class TableDetailsComponent implements OnInit {
     });
        
   }
-  /*
-  ngDoCheck(){
-    for(var item in this.tableService.tableList){
-       if(this.tableService.tableList[item].tableNo == this.id){
-         if(this.tableService.tableList[item].isActive == false) this.isActive = "trống";
-         else this.isActive = "có khách";
-         console.log(this.isActive);
-       }
-    }
-  }*/
 
   ngDoCheck(){
     //console.log(this.uniqueMenuList);
