@@ -1,0 +1,46 @@
+sql qery 
+
+INSERT
+INTO
+    `Items`(`uid`, `name`, `price`)
+VALUES(01, 'Bún nem nướng', 25),(02, 'Bún sữa', 25),(03, 'Bún xí quách', 25),(04, 'Bún bao tữ', 25),(05, 'Đầu cá bớp', 60),(06, 'Đầu cá thu', 60),(07, 'Đầu cá chẽm đen', 60),(08, 'Mắt cá ngừ', 40),(09, 'Chả cá nhồng mềm', 40),(10, 'Nem cuốn', 15),(11, 'Nem chua', 5),(12, 'Nem lùi', 5),(13, 'Chả lụa', 5),(14, 'Bánh ít trần', 6),(15, 'Bánh bèo nóng', 15),(16, 'Gỏi ốc bà bảy (nhỏ)', 50),(17, 'Gỏi ốc bà bảy (lớn)', 70),(18, 'Bún (đặc biệt)', 40),(
+    19,
+    '(đặc biệt) Bánh canh cá thu',
+    40
+),(
+    20,
+    'Chả cá viên nhồng mềm 100%',
+    35
+),(
+    21,
+    'Bún chả cá NHỒNG MỀM (nhỏ)',
+    20
+),(
+    22,
+    'Bún chả cá NHỒNG MỀM (lớn)',
+    30
+),(
+    23,
+    'Bánh canh chả cá NHỔNG MỀM (nhỏ)',
+    20
+),(
+    24,
+    'Bánh canh chả cá NHỔNG MỀM (lớn)',
+    30
+),(25, 'Bánh cá tươi (nhỏ)', 20),(26, 'Bánh cá tươi (lớn)', 30),(
+    27,
+    'Bún chả cá NHỒNG + cá tươi (nhỏ)',
+    30
+),(
+    28,
+    'Bún chả cá NHỒNG + cá tươi (lớn)',
+    35
+),(
+    29,
+    'Bánh canh chả cá NHỒNG + cá tươi (nhỏ)',
+    30
+),(
+    30,
+    'Bánh canh chả cá NHỒNG + cá tươi (lớn)',
+    35
+),(31, 'Nước suối', 7),(32, 'Nước ngọt', 12),(33, 'Bò Húc (Thái)', 15),(34, 'Sài gòn xanh', 18),(35, 'Tiger', 18),(36, 'Heneiken', 20),(37, 'Trà đá', 2),(38, 'Khăn lạnh', 1)

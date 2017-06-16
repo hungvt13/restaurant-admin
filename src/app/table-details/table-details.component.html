@@ -1,8 +1,46 @@
 <app-nav-bar></app-nav-bar>
-<a routerLink="/select-table"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
-<p>
-  table-details works!
-</p>
-<h1>Bàn số: {{this.id}}</h1>
-<h2>Tình trạng: {{this.isActive}}</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <div>
+      <a routerLink="/select-table"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
+      </div>
+      <h2>Bàn số: {{this.id}}</h2>
+      <h3>Tình trạng: {{this.isActive}}</h3>
+    </div>
+    <div class="col-sm-6" >
+      <h1>Menu</h1>
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th >Món</th>
+        <th >Giá</th>
+        <th >Số lương</th>
+        <th >Thêm</th>
+        <th >Bớt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of this.uniqueMenuList">
+        <td>{{item.itemName}}</td>
+        <td>{{item.itemPrice}}.000 VNĐ</td>
+        <td> {{item.itemQuantity}} </td>
+        <td><button (click)="increaseClick(item)" type="button" class="btn btn-info">+</button></td>
+        <td><button (click)="decreaseClick(item)" type="button" class="btn btn-warning">-</button></td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+    <div class="col-sm-4">
+      <h3>Tổng: {{this.totalItem}} món</h3>
+      <button type="button" class="btn btn-default">Cập nhật</button>
+      <h2 *ngIf="this.totalPrice == 0">Tổng cộng: 0.000 VNĐ</h2>
+      <h2 *ngIf="this.totalPrice != 0">Tổng cộng: {{this.stringPrice}}.000 VNĐ</h2>
+      <button type="button" class="btn btn-primary">Thanh Toán</button>
+      <button type="button" class="btn btn-danger">Hủy</button>
+    </div>
+  </div>
+</div>
+
+
 
