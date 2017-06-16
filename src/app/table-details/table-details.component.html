@@ -34,8 +34,8 @@
     <div class="col-sm-4">
       <h3>Tổng: {{this.totalItem}} món</h3>
       <button type="button" class="btn btn-default">Cập nhật</button>
-      <h2 *ngIf="this.totalPrice == 0">Tổng cộng: 0.000 VNĐ</h2>
-      <h2 *ngIf="this.totalPrice != 0">Tổng cộng: {{this.tableService.getMenuListTotalPrice(this.id)}}.000 VNĐ</h2>
+      <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) == 0">Tổng cộng: 0.000 VNĐ</h2>
+      <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) != 0">Tổng cộng: {{this.tableService.getMenuListTotalPrice(this.id)}}.000 VNĐ</h2>
       <button type="button" class="btn btn-primary">Thanh Toán</button>
       <button type="button" class="btn btn-danger">Hủy</button>
     </div>

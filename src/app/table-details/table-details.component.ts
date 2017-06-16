@@ -15,15 +15,11 @@ export class TableDetailsComponent implements OnInit {
   tableService:any;
   uniqueMenuList: any;
 
-  totalPrice: number;
   stringPrice: string
-  totalItem: number;
 
   constructor(private route: ActivatedRoute, tableService: TableService) {
     this.tableService = tableService;
 
-    this.totalPrice = 0;
-    this.totalItem = 0;
    }
 
   ngOnInit() {
@@ -61,27 +57,25 @@ export class TableDetailsComponent implements OnInit {
     this.uniqueMenuList.filter(x => x == item)[0].itemQuantity += 1;
 
     //calculate total price
-    this.totalPrice += parseInt(this.uniqueMenuList.filter(x => x == item)[0].itemPrice);
-    this.totalItem += 1;
+    let totalPrice = 0;
+    totalPrice = parseInt(this.uniqueMenuList.filter(x => x == item)[0].itemPrice);
+    this.tableService.addMenuListTotalPrice(this.id,totalPrice);
 
-    //get the string version 
-    this.tableService.addMenuListTotalPrice(this.id,this.numberWithCommas(this.totalPrice));
     this.stringPrice = this.tableService.getMenuListTotalPrice(this.id);
   }
 
-  //format number to currency 
-   private numberWithCommas(x) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
 
   private decreaseClick(item){
 
     //limit not below 0
     if(this.uniqueMenuList.filter(x => x == item)[0].itemQuantity > 0){
        this.uniqueMenuList.filter(x => x == item)[0].itemQuantity -= 1;
-       this.totalPrice -= parseInt(this.uniqueMenuList.filter(x => x == item)[0].itemPrice);
-       this.totalItem -= 1;
-       this.stringPrice = this.numberWithCommas(this.totalPrice);
+
+       let totalPrice = 0;
+       totalPrice = parseInt(this.uniqueMenuList.filter(x => x == item)[0].itemPrice);
+       this.tableService.subMenuListTotalPrice(this.id,totalPrice);
+
+       this.stringPrice = this.tableService.getMenuListTotalPrice(this.id);
     }
   }
 

@@ -56,20 +56,31 @@ export class TableService {
     let tempList = this.menuList.map(x => Object.assign({}, x));
     this.instanceMenuList.push(new List(num,tempList));
 
-    console.log(this.instanceMenuList);
+    //console.log(this.instanceMenuList);
   }
 
   public getMenuList(num){
     return this.instanceMenuList.filter(x => x.id == num)[0].list;
   }
 
+
   public addMenuListTotalPrice(num, price){
-    this.instanceMenuList.filter(x => x.id == num)[0].totalPrice = price;
-    console.log(this.instanceMenuList);
+    this.instanceMenuList.filter(x => x.id == num)[0].totalPrice += price;
+    //console.log(this.instanceMenuList);
+  }
+
+  public subMenuListTotalPrice(num, price){
+    this.instanceMenuList.filter(x => x.id == num)[0].totalPrice -= price;
+    //console.log(this.instanceMenuList);
   }
 
   public getMenuListTotalPrice(num){
-    return this.instanceMenuList.filter(x => x.id == num)[0].totalPrice;
+    return this.numberWithCommas(this.instanceMenuList.filter(x => x.id == num)[0].totalPrice);
+  }
+
+  //format number to currency 
+  private numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   
@@ -113,11 +124,11 @@ class Item{
 class List{
   id: string;
   list: any;
-  totalPrice: string;
+  totalPrice: number;
 
   constructor(id, list){
     this.id = id;
     this.list = list;
-    this.totalPrice = '';
+    this.totalPrice = 0;
   }
 }
