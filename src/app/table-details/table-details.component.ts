@@ -10,7 +10,6 @@ import { TableService } from '../table.service';
 export class TableDetailsComponent implements OnInit {
 
   id: number;
-  isActive: string;
   private sub: any;
   tableService:any;
   uniqueMenuList: any;
@@ -29,9 +28,7 @@ export class TableDetailsComponent implements OnInit {
        // In a real app: dispatch action to load the details here.
        this.tableService.addMenuList(this.id);
        this.uniqueMenuList = this.tableService.getMenuList(this.id);
-      
-    });
-       
+    });  
   }
 
   ngDoCheck(){
