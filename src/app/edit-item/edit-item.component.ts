@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TableService } from '../table.service';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -22,12 +22,12 @@ export class EditItemComponent implements OnInit {
   public mess;
   
 
-  constructor(public fb: FormBuilder, private route: ActivatedRoute, tableService: TableService) {
+  constructor(public fb: FormBuilder, private route: ActivatedRoute, private router: Router, tableService: TableService) {
     this.tableService = tableService;
 
     this.form = this.fb.group({
       itemName: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(15)])],
-      itemPrice: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{2}')])],
+      itemPrice: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
     });
 
       try{

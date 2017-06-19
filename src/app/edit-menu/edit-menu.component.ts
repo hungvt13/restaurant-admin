@@ -13,7 +13,7 @@ export class EditMenuComponent implements OnInit {
 
   public tableService;
   private selectedItem;
-  private name;
+  public name;
 
   constructor(tableService: TableService, private router: Router, private route: ActivatedRoute) { 
     this.tableService = tableService;
