@@ -22,7 +22,7 @@ export class CreateTableComponent implements OnInit {
   private tableNo;
   public mess;
   public mess2;
-  private isCreate: boolean = false;
+  private isCreate: boolean = true;
   private isDelete: boolean = false;
 
 

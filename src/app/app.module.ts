@@ -14,8 +14,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { AuthGuardService } from './auth-guardn.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import {AuthService} from './auth.service';
-import {TableService} from './table.service';
+
+import { AuthService } from './auth.service';
+import { TableService } from './table.service';
+import { ReportService } from './report.service';
 
 import {  Http, RequestOptions } from '@angular/http';
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -73,7 +75,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     },
     AuthGuardService,
     AuthService,
-    TableService
+    TableService,
+    ReportService
     ],
   bootstrap: [AppComponent]
 })

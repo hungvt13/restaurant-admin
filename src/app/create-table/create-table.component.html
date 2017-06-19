@@ -5,7 +5,7 @@
     <button (click)="onCreate()" class ="btn btn-primary">Tạo bàn</button>
     <button (click)="onDelete()" class ="btn btn-primary">Xóa bàn</button><br><br>
     <!-- jumbotron -->
-    <div *ngIf="isCreate" class="jumbotron">
+    <div *ngIf="isCreate" class="jumbotron animated zoomIn">
         
         <h2>Thêm bàn mới</h2>
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
@@ -25,7 +25,7 @@
 
         <div><h4>Status: {{mess}}</h4></div>
     </div><!-- end jumbotron -->
-    <div *ngIf="isDelete">
+    <div *ngIf="isDelete" class="animated zoomIn">
         <h4> Chọn để xóa bàn </h4>
         <div ><h4>Status: {{mess2}}</h4></div>
         <div class="btn-toolbar" role="toolbar" aria-label="...">
