@@ -13,6 +13,8 @@ export class ReceiptViewComponent implements OnInit {
   private sub: any;
   tableService: any;
 
+  date: any;
+
   receiptItemList: any;
   finalList: any = [];
   finalPrice: number = 0;
@@ -26,6 +28,7 @@ export class ReceiptViewComponent implements OnInit {
        // In a real app: dispatch action to load the details here.
     });  
     this.getList();
+    this.formatDate();
   }
 
   ngOnInit() {
@@ -44,8 +47,26 @@ export class ReceiptViewComponent implements OnInit {
        }catch(e) {}
   }
 
+  formatDate(){
+    var temp = new Date();
+    var ngay = temp.getDate();
+    var thang = temp.getMonth()+1;
+    var nam = temp.getFullYear();
+
+    var gio = temp.getHours();
+    var phut = temp.getMinutes();
+
+    var temp2 = ngay + '/' + thang + '/' + nam + '-' + gio + ':' + phut;
+
+    this.date = temp2;
+
+
+  }
+
   onClick(){
-    console.log(this.finalList);
+    var d = new Date();
+    console.log(this.date);
+
   }
 
 }

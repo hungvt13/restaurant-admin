@@ -6,7 +6,6 @@
       <a routerLink="/select-table"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
       </div>
       <h2>Bàn số: {{this.id}}</h2>
-      <h3>Tình trạng: {{this.isActive}}</h3>
     </div>
     <div class="col-sm-6" >
       <h1>Menu</h1>
@@ -15,13 +14,13 @@
       <tr>
         <th >Món</th>
         <th >Giá</th>
-        <th >Số lương</th>
+        <th >Số lượng</th>
         <th >Thêm</th>
         <th >Bớt</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of this.uniqueMenuList">
+      <tr *ngFor="let item of this.tableService.menuList">
         <td>{{item.itemName}}</td>
         <td>{{item.itemPrice}}.000 VNĐ</td>
         <td> {{item.itemQuantity}} </td>

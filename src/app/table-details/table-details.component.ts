@@ -65,5 +65,4 @@ export class TableDetailsComponent implements OnInit {
        this.stringPrice = this.tableService.getMenuListTotalPrice(this.id);
     }
   }
-
 }

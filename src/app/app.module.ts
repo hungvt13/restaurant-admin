@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
+
 
 import { AppComponent } from './app.component';
 import { MyHomeComponent } from './my-home/my-home.component';
@@ -23,6 +24,9 @@ import { SelectTableComponent } from './select-table/select-table.component';
 import { CreateMenuComponent } from './create-menu/create-menu.component';
 import { TableDetailsComponent } from './table-details/table-details.component';
 import { ReceiptViewComponent } from './receipt-view/receipt-view.component';
+import { MenuManageComponent } from './menu-manage/menu-manage.component';
+import { EditMenuComponent } from './edit-menu/edit-menu.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
@@ -42,6 +46,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CreateMenuComponent,
     TableDetailsComponent,
     ReceiptViewComponent,
+    MenuManageComponent,
+    EditMenuComponent,
+    EditItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     RouterModule.forRoot(routes, {
       useHash: false
     }),
+    ReactiveFormsModule,
   ],
   providers: [
     {

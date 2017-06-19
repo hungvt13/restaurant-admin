@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1">
+      <div>
+
+      </div>
+    </div>
+    <div class="col-sm-9" >
+      <h1>Menu hiện tại</h1>
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th >Món</th>
+        <th> Mã số </th>
+        <th >Giá</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of this.tableService.menuList">
+        <td>{{item.itemName}}</td>
+        <td>{{item.itemUID}}</td>
+        <td>{{item.itemPrice}}.000 VNĐ</td>
+        <td><a [routerLink] = "['../edit-item', item.itemUID]"><button (click)="editClick(item)" type="button" class="btn btn-info">chỉnh</button></a></td>
+        <td><button (click)="deleteItem(item)" type="button" class="btn btn-warning">xóa</button></td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+  </div>
+</div>
+
+
+

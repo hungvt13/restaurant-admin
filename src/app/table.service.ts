@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TableService {
@@ -8,12 +10,18 @@ export class TableService {
   public tableList: Array<Table> = []; //list to store table objects
   public menuList: Array<Item> = []; //list to store table objects
   public instanceMenuList: Array<List> = [];
+  public singleItem: any ;
   
 
   constructor(public http: Http) { 
     this.getTableListService();
     this.getMenuListService();   
   }
+
+  //
+  //READ 
+  //
+
   // get the list of tables available 
   private getTableListService(){
     var eventData: any = this.http.get('http://kiemsi-khatmau.000webhostapp.com/api/product/test.php');
@@ -44,6 +52,13 @@ export class TableService {
                   }
                   //console.log(response);
             });
+  }
+
+  //fetch new data
+  public refreshMenuListService(){
+    console.log("refreshing menu..");
+    this.menuList = [];
+    this.getMenuListService();
   }
 
   //add an instance of menu based on table ID
@@ -93,8 +108,64 @@ export class TableService {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  
+  //get single object
+  public setSingleItem(item){
+    this.singleItem = item;
+  }
 
+  //
+  //MODIFY 
+  //
+
+  public createProduct(product): any {
+    var encoded = JSON.stringify(product);
+    console.log("create called");
+    //console.log(encoded);
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+ 
+    return this.http.post(
+        "https://kiemsi-khatmau.000webhostapp.com/api/product/create.php",
+        encoded,
+        options
+    ).map(x => x.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
+  }
+
+  public deleteProduct(product): any {
+    var encoded = JSON.stringify(product);
+    console.log("create called");
+    //console.log(encoded);
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+ 
+    return this.http.post(
+        "https://kiemsi-khatmau.000webhostapp.com/api/product/delete.php",
+        encoded,
+        options
+    ).map(x => x.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
+  }
+
+   public updateProduct(product): any {
+    //console.log(product);
+    var encoded = JSON.stringify(product);
+    console.log("update called");
+    
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+ 
+    return this.http.post(
+        "https://kiemsi-khatmau.000webhostapp.com/api/product/update.php",
+        encoded,
+        options
+    ).map(x => x.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+    //temp.subscribe(x =>{});
+  }
 }
 
 //class for a Table

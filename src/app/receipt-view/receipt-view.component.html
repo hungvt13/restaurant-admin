@@ -31,7 +31,8 @@
     </div>
 
     <div class="col-sm-4">
-      <h3>Tổng số món: {{this.finalItems}}</h3>      
+      <h3>Tổng số món: {{this.finalItems}}</h3>    
+      <h5>Thời gian: {{this.date}}</h5>    
       <h2>Tổng cộng: {{this.finalPrice}}.000 VNĐ</h2>
       <a [routerLink] = "['/receipt', this.id]">
       <button type="button" class="btn btn-default">Hóa đơn</button>
