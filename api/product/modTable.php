@@ -14,15 +14,23 @@ $db = $database->getConnection();
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
+$active;
+
+if($data->isActive == true){
+    $active = 1;
+}
+else{
+    $active = 0;
+}
 
  // query to insert record
 //$sql = "INSERT INTO Items (name,price,uid) VALUES ('$data->itemName','$data->itemPrice', '$data->itemUID')";
 
 //1 = add | 2 = delete
 if($data->command == 1){
-    $sql = "INSERT INTO Items (name,price,uid) VALUES ('nono','10', '100')";
+    $sql = "INSERT INTO tableList (id,active) VALUES ('$data->tableNo','$active')";
 }elseif($data->command == 2){
-    $sql = "DELETE FROM Items WHERE id ='$data->id'";
+    $sql = "DELETE FROM Items WHERE id ='$data->tableNo'";
 }
 
 

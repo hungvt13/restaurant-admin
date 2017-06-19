@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthHttp ,JwtHelper} from 'angular2-jwt';
-import { Http } from '@angular/http';
+import {  JwtHelper} from 'angular2-jwt';
 import { TableService } from '../table.service';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-table',
@@ -16,14 +16,56 @@ export class CreateTableComponent implements OnInit {
   jwtExpired: any;
   decodedJwt: string;
   response: string;
-  api: string;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(tableServie: TableService, public router: Router, public http: Http, public authHttp: AuthHttp, public tableService: TableService) { 
+  private form: FormGroup;
+  private tableNo;
+  public mess;
+  public mess2;
+
+
+
+  constructor(public fb: FormBuilder ,tableServie: TableService, public router: Router, public tableService: TableService) { 
     this.jwt = localStorage.getItem('id_token');
     this.decodedJwt = this.jwtHelper.decodeToken(this.jwt);
     this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.jwt);
     this.jwtExpired = this.jwtHelper.isTokenExpired(this.jwt);
+
+    this.form = this.fb.group({
+      tableNo: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(15)])],
+    });
+  }
+
+  private onSubmit(item: any): void {
+    console.log('Reactive Form Data: ');
+    item['isActive'] = false;
+    item['command'] = 1;
+    console.log(item);
+    
+    this.tableService.modifyTable(item).subscribe(
+      suc => {
+        //console.log(JSON.stringify(suc.message));
+        this.mess = JSON.stringify(suc.message);
+        this.tableService.refreshTableListService();
+        setTimeout(()=>{this.mess = ""},2000);
+      },
+      err => {console.log(err);}
+    );
+
+  }
+
+  private deleteTable(item){
+    item['command'] = 2;
+    console.log(item);
+    this.tableService.modifyTable(item).subscribe(
+      suc => {
+        //console.log(JSON.stringify(suc.message));
+        this.mess2 = JSON.stringify(suc.message);
+        this.tableService.refreshTableListService();
+        setTimeout(()=>{this.mess = ""},2000);
+      },
+      err => {console.log(err);}
+    );
   }
 
   ngOnInit() {

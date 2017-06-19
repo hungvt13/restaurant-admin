@@ -61,6 +61,12 @@ export class TableService {
     this.getMenuListService();
   }
 
+  public refreshTableListService(){
+    console.log("refreshing menu..");
+    this.tableList = [];
+    this.getTableListService();
+  }
+
   //add an instance of menu based on table ID
   public addMenuList(num){
 
@@ -165,6 +171,22 @@ export class TableService {
     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
     //temp.subscribe(x =>{});
+  }
+
+  public modifyTable(product): any{
+    var encoded = JSON.stringify(product);
+    console.log("table modify called");
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(
+        "https://kiemsi-khatmau.000webhostapp.com/api/product/modTable.php",
+        encoded,
+        options
+    ).map(x => x.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
+
   }
 }
 

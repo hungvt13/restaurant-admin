@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthHttp ,JwtHelper} from 'angular2-jwt';
-import { Http } from '@angular/http';
+import { JwtHelper} from 'angular2-jwt';
 import { TableService } from '../table.service';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -26,7 +25,7 @@ export class CreateMenuComponent implements OnInit {
   private itemUID;
   public mess;
 
-  constructor(public fb: FormBuilder, public router: Router, public http: Http, public authHttp: AuthHttp, public tableService: TableService) { 
+  constructor(public fb: FormBuilder, public router: Router, public tableService: TableService) { 
     this.jwt = localStorage.getItem('id_token');
     this.decodedJwt = this.jwtHelper.decodeToken(this.jwt);
     this.jwtDate = this.jwtHelper.getTokenExpirationDate(this.jwt);
@@ -54,6 +53,7 @@ export class CreateMenuComponent implements OnInit {
       err => {console.log(err);}
     );
   }
+  
   ngOnInit() {
   }
 

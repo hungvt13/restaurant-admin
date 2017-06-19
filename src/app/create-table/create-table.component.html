@@ -1,4 +1,33 @@
 <app-nav-bar></app-nav-bar>
-<a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
 
+<div class = "container">
+    <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
+    <!-- jumbotron -->
+    <div class="jumbotron">
+        
+        <h2>Thêm bàn mới</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+        <div class="form-group" [ngClass]="{'has-error':!form.controls['tableNo'].valid && form.controls['tableNo'].touched}">
+            <label>Bàn số:</label>
+            <input [(ngModel)] ="tableNo" class="form-control" type="text" placeholder="25" [formControl]="form.controls['tableNo']"  >
+            <div *ngIf="form.controls['tableNo'].hasError('required') && form.controls['tableNo'].touched" class="alert alert-danger">Vui lòng nhập giá tiền</div>
+            <div *ngIf="form.controls['tableNo'].hasError('pattern') && form.controls['tableNo'].touched" class="alert alert-danger">Số không hợp lệ</div> 
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Tạo</button>
+        </div>
+
+        </form>
+
+        <div><h4>Status: {{mess}}</h4></div>
+    </div><!-- end jumbotron -->
+    <h4> Chọn để xóa bàn </h4>
+    <div ><h4>Status: {{mess2}}</h4></div>
+    <div class="btn-toolbar" role="toolbar" aria-label="...">
+    <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
+        <button (click)="deleteTable(item)"type="button" class="btn-lg btn-warning">bàn {{item.tableNo}}</button>
+    </div>
+</div>
 
