@@ -19,7 +19,7 @@ export class EditItemComponent implements OnInit {
   private itemName;
   private itemPrice;
   private itemUID;
-  private mess;
+  public mess;
   
 
   constructor(public fb: FormBuilder, private route: ActivatedRoute, tableService: TableService) {
@@ -61,7 +61,10 @@ export class EditItemComponent implements OnInit {
 
        // In a real app: dispatch action to load the details here.
     }); 
+  }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

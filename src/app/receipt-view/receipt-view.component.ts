@@ -35,6 +35,10 @@ export class ReceiptViewComponent implements OnInit {
     
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   getList(){
     try{
           this.receiptItemList = this.tableService.getMenuList(this.id);

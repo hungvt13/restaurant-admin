@@ -24,7 +24,7 @@ export class CreateMenuComponent implements OnInit {
   private itemName;
   private itemPrice;
   private itemUID;
-  private mess;
+  public mess;
 
   constructor(public fb: FormBuilder, public router: Router, public http: Http, public authHttp: AuthHttp, public tableService: TableService) { 
     this.jwt = localStorage.getItem('id_token');

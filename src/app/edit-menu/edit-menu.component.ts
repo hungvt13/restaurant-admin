@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableService } from '../table.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditMenuComponent implements OnInit {
 
-  private tableService;
+  public tableService;
+  private selectedItem;
+  private name;
 
   constructor(tableService: TableService, private router: Router, private route: ActivatedRoute) { 
     this.tableService = tableService;
@@ -32,5 +35,25 @@ export class EditMenuComponent implements OnInit {
   private editClick(item){
     this.tableService.setSingleItem(item);
   }
+
+  @ViewChild('myModal')
+    modal: ModalComponent;
+    animation: boolean = true;    
+
+    close() {
+        this.modal.close();
+        console.log("HERE");
+        this.deleteItem(this.selectedItem);
+    }
+    
+    open(item) {
+        this.selectedItem = item;
+        this.name= this.selectedItem.itemName;  
+        this.modal.open();
+    }
+
+    dismiss(){
+      this.modal.dismiss();
+    }
 
 }

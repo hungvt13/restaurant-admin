@@ -28,6 +28,9 @@ import { MenuManageComponent } from './menu-manage/menu-manage.component';
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { EditItemComponent } from './edit-item/edit-item.component';
 
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+
+
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
 }
@@ -58,6 +61,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       useHash: false
     }),
     ReactiveFormsModule,
+    Ng2Bs3ModalModule
   ],
   providers: [
     {
