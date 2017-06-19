@@ -1,9 +1,11 @@
 <app-nav-bar></app-nav-bar>
 
 <div class = "container">
-    <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
+    <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a>
+    <button (click)="onCreate()" class ="btn btn-primary">Tạo bàn</button>
+    <button (click)="onDelete()" class ="btn btn-primary">Xóa bàn</button><br><br>
     <!-- jumbotron -->
-    <div class="jumbotron">
+    <div *ngIf="isCreate" class="jumbotron">
         
         <h2>Thêm bàn mới</h2>
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
@@ -23,11 +25,13 @@
 
         <div><h4>Status: {{mess}}</h4></div>
     </div><!-- end jumbotron -->
-    <h4> Chọn để xóa bàn </h4>
-    <div ><h4>Status: {{mess2}}</h4></div>
-    <div class="btn-toolbar" role="toolbar" aria-label="...">
-    <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
-        <button (click)="deleteTable(item)"type="button" class="btn-lg btn-warning">bàn {{item.tableNo}}</button>
+    <div *ngIf="isDelete">
+        <h4> Chọn để xóa bàn </h4>
+        <div ><h4>Status: {{mess2}}</h4></div>
+        <div class="btn-toolbar" role="toolbar" aria-label="...">
+        <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
+            <button (click)="deleteTable(item)"type="button" class="btn-lg btn-warning">bàn {{item.tableNo}}</button>
+        </div>
     </div>
 </div>
 

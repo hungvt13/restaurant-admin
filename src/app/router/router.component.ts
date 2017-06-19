@@ -14,6 +14,7 @@ import { MenuManageComponent } from '../menu-manage/menu-manage.component';
 import { EditItemComponent } from '../edit-item/edit-item.component';
 import { TableDetailsComponent } from '../table-details/table-details.component';
 import { ReceiptViewComponent } from '../receipt-view/receipt-view.component';
+import { ReportMenuComponent } from '../report-menu/report-menu.component';
 
 
 
@@ -34,6 +35,7 @@ export const routes: Routes = [
   {path:'select-table',   component: SelectTableComponent, canActivate: [AuthGuardService] },
   {path:'table-details/:id',   component: TableDetailsComponent, canActivate: [AuthGuardService]},
   {path:'receipt/:id',   component: ReceiptViewComponent, canActivate: [AuthGuardService]},
+  {path: 'report', component: ReportMenuComponent, canActivate: [AuthGuardService]},
   {path:'**', redirectTo: ''}
   ];
 

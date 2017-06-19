@@ -22,6 +22,8 @@ export class CreateTableComponent implements OnInit {
   private tableNo;
   public mess;
   public mess2;
+  private isCreate: boolean = false;
+  private isDelete: boolean = false;
 
 
 
@@ -66,6 +68,16 @@ export class CreateTableComponent implements OnInit {
       },
       err => {console.log(err);}
     );
+  }
+
+  private onCreate(){
+    this.isDelete = false;
+    this.isCreate = true;
+  }
+
+  private onDelete(){
+    this.isCreate = false;
+    this.isDelete = true;
   }
 
   ngOnInit() {

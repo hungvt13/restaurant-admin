@@ -35,7 +35,7 @@
       <h5>Thời gian: {{this.date}}</h5>    
       <h2>Tổng cộng: {{this.finalPrice}}.000 VNĐ</h2>
       <a [routerLink] = "['/receipt', this.id]">
-      <button type="button" class="btn btn-default">Hóa đơn</button>
+      <button (click)="onConfirm()" type="button" class="btn btn-default">Hóa đơn</button>
       </a>
       <button (click)="onClick()" type="button" class="btn btn-danger">Hủy</button>
       <br><br><br>

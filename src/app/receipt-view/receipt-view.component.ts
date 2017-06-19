@@ -70,7 +70,10 @@ export class ReceiptViewComponent implements OnInit {
   onClick(){
     var d = new Date();
     console.log(this.date);
+  }
 
+  onConfirm(){
+    window.print();
   }
 
 }

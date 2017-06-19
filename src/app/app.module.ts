@@ -29,6 +29,7 @@ import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { EditItemComponent } from './edit-item/edit-item.component';
 
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { ReportMenuComponent } from './report-menu/report-menu.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -52,6 +53,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     MenuManageComponent,
     EditMenuComponent,
     EditItemComponent,
+    ReportMenuComponent,
   ],
   imports: [
     BrowserModule,
