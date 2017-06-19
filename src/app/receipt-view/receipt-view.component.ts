@@ -20,6 +20,14 @@ export class ReceiptViewComponent implements OnInit {
   finalPrice: number = 0;
   finalItems: number = 0;
 
+  temp: any;
+  ngay: any;
+  thang: any;
+  nam: any;
+  gio: any;
+  phut: any;
+  giay: any;
+
   constructor(private route: ActivatedRoute, tableService: TableService) { 
     this.tableService = tableService;
     this.sub = this.route.params.subscribe(params => {
@@ -27,6 +35,15 @@ export class ReceiptViewComponent implements OnInit {
 
        // In a real app: dispatch action to load the details here.
     });  
+    this.temp = new Date();
+    this.ngay = this.temp.getDate();
+    this.thang = this.temp.getMonth()+1;
+    this.nam = this.temp.getFullYear();
+
+    this.gio = this.temp.getHours();
+    this.phut = this.temp.getMinutes();
+    this.giay = this.temp.getSeconds();
+
     this.getList();
     this.formatDate();
   }
@@ -51,16 +68,10 @@ export class ReceiptViewComponent implements OnInit {
        }catch(e) {}
   }
 
+
   formatDate(){
-    var temp = new Date();
-    var ngay = temp.getDate();
-    var thang = temp.getMonth()+1;
-    var nam = temp.getFullYear();
 
-    var gio = temp.getHours();
-    var phut = temp.getMinutes();
-
-    var temp2 = ngay + '/' + thang + '/' + nam + '-' + gio + ':' + phut;
+    var temp2 = this.ngay + '/' + this.thang + '/' + this.nam + '-' + this.gio + ':' + this.phut;
 
     this.date = temp2;
 
@@ -69,11 +80,27 @@ export class ReceiptViewComponent implements OnInit {
 
   onClick(){
     var d = new Date();
-    console.log(this.date);
+    console.log(d);
   }
 
   onConfirm(){
-    window.print();
+    //window.print();
+    var formatedDate = this.nam+"-"+this.thang+"-"+this.ngay+" "+this.gio+":"+this.phut+":"+this.giay;
+    //console.log(formatedDate);
+    for(var item in this.finalList){
+      this.finalList[item]['month'] = this.thang;
+      this.finalList[item]['itemDate'] = formatedDate;
+      //console.log(this.finalList[item]);
+    }
+    this.tableService.addRecord(this.finalList).subscribe(
+      suc => {
+        console.log(JSON.stringify(suc.message));
+        //this.mess = JSON.stringify(suc.message);
+        //this.tableService.refreshMenuListService();
+        
+      },
+      err => {console.log(err);}
+    );
   }
 
 }

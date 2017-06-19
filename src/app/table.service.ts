@@ -188,6 +188,25 @@ export class TableService {
     .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
 
   }
+
+  public addRecord(product): any{
+    var encoded = JSON.stringify(product);
+    console.log("add record called");
+    //console.log(encoded);
+    
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(
+        "https://kiemsi-khatmau.000webhostapp.com/api/product/insertRecord.php",
+        encoded,
+        options
+    ).map(x => x.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
+    
+  }
+
+
 }
 
 //class for a Table
