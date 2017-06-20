@@ -10,7 +10,7 @@ import { ReportService } from '../report.service';
 })
 export class ReportMenuComponent implements OnInit {
 
-  private form: FormGroup;
+  public form: FormGroup;
   queryJSON: any;
   fromDate;
   toDate;
@@ -22,7 +22,7 @@ export class ReportMenuComponent implements OnInit {
     });
    }
 
-   private onSubmit(item: any): void {
+   public onSubmit(item: any): void {
     //this.listRecords = [];
     console.log('Reactive Form Data: ');
     console.log(item);

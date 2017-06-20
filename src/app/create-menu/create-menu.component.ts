@@ -32,7 +32,7 @@ export class CreateMenuComponent implements OnInit {
     this.jwtExpired = this.jwtHelper.isTokenExpired(this.jwt);
 
     this.form = this.fb.group({
-      itemName: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(15)])],
+      itemName: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z0-9]*'), Validators.minLength(1), Validators.maxLength(15)])],
       itemPrice: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       itemUID: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
     });
