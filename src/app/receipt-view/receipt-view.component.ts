@@ -84,11 +84,13 @@ export class ReceiptViewComponent implements OnInit {
   }
 
   onConfirm(){
+    //var ran = Math.floor((Math.random() * 10) + 1);
     //window.print();
     var formatedDate = this.nam+"-"+this.thang+"-"+this.ngay+" "+this.gio+":"+this.phut+":"+this.giay;
     //console.log(formatedDate);
     for(var item in this.finalList){
       this.finalList[item]['month'] = this.thang;
+      this.finalList[item]['day'] = this.ngay;
       this.finalList[item]['itemDate'] = formatedDate;
       //console.log(this.finalList[item]);
     }

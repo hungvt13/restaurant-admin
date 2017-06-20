@@ -10,25 +10,25 @@
     <div class="col-sm-6" >
       <h1>Menu</h1>
       <table class="table table-striped">
-    <thead>
-      <tr>
-        <th >Món</th>
-        <th >Giá</th>
-        <th >Số lượng</th>
-        <th >Thêm</th>
-        <th >Bớt</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of uniqueMenuList">
-        <td>{{item.itemName}}</td>
-        <td>{{item.itemPrice}}.000 VNĐ</td>
-        <td> {{item.itemQuantity}} </td>
-        <td><button (click)="increaseClick(item)" type="button" class="btn btn-info">+</button></td>
-        <td><button (click)="decreaseClick(item)" type="button" class="btn btn-warning">-</button></td>
-      </tr>
-    </tbody>
-  </table>
+        <thead>
+          <tr>
+            <th >Món</th>
+            <th >Giá</th>
+            <th >Số lượng</th>
+            <th >Thêm</th>
+            <th >Bớt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of uniqueMenuList">
+            <td>{{item.itemName}}</td>
+            <td>{{item.itemPrice}}.000 VNĐ</td>
+            <td> {{item.itemQuantity}} </td>
+            <td><button (click)="increaseClick(item)" type="button" class="btn btn-info">+</button></td>
+            <td><button (click)="decreaseClick(item)" type="button" class="btn btn-warning">-</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="col-sm-4">
       <h3>Tổng: {{this.tableService.getMenuListTotalItem(this.id)}}</h3>

@@ -22,8 +22,8 @@ export class CreateTableComponent implements OnInit {
   private tableNo;
   public mess;
   public mess2;
-  private isCreate: boolean = true;
-  private isDelete: boolean = false;
+  public isCreate: boolean = true;
+  public isDelete: boolean = false;
 
 
 
@@ -70,12 +70,12 @@ export class CreateTableComponent implements OnInit {
     );
   }
 
-  private onCreate(){
+  public onCreate(){
     this.isDelete = false;
     this.isCreate = true;
   }
 
-  private onDelete(){
+  public onDelete(){
     this.isCreate = false;
     this.isDelete = true;
   }

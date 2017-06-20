@@ -23,6 +23,7 @@ $year = "year".$year;
 $sql = "CREATE TABLE IF NOT EXISTS `".$year."`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `month` INT(11) NOT NULL,
+    `day` INT(1) NOT NULL,
     `uid` INT(11) NOT NULL,
     `quantity` INT(11) NOT NULL,
     `created` DATETIME NOT NULL,
@@ -34,10 +35,10 @@ $stmt = $db->prepare($sql);
 $stmt->execute();
 
 //add data to record
- $sql2 = "INSERT INTO year2017 (month, uid, quantity, created) VALUES";
+ $sql2 = "INSERT INTO year2017 (month, day, uid, quantity, created) VALUES";
 
  foreach($data as $obj){
-     $string = "('".$obj->month."','" .$obj->itemUID. "','" .$obj->itemQuantity."','".$obj->itemDate."'),";
+     $string = "('".$obj->month."','".$obj->day."','".$obj->itemUID."','".$obj->itemQuantity."','".$obj->itemDate."'),";
      // $string = " ".$obj->itemUID." ";
      $sql2 = $sql2 . $string;
  }

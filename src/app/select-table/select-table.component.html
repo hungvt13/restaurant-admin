@@ -1,15 +1,23 @@
 <app-nav-bar></app-nav-bar>
-<a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
 
 <div class ="container">
-    <div *ngIf="!isAvailable"> 
-        <a class="btn btn-danger btn-sm disabled" role="button">Đang lấy thông tin menu...</a>
-    </div><br>
-    <div *ngIf="isAvailable"  class="btn-toolbar" role="toolbar" aria-label="...">
-    <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
-        <a [routerLink] = "['/table-details', item.tableNo]">
-        <button type="button" class="btn-lg btn-primary">bàn {{item.tableNo}}</button>
-        </a>
-    </div>
+    <div class ="row">
+        <div class="col-sm-2" >
+            <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
+        </div>
+        <div class="col-sm-8" >
+            <div *ngIf="!isAvailable"> 
+                <a class="btn btn-danger btn-sm disabled" role="button">Đang lấy thông tin menu...</a>
+            </div><br>
+            <div *ngIf="isAvailable"  class="btn-toolbar" role="toolbar" aria-label="...">
+            <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
+                <a [routerLink] = "['/table-details', item.tableNo]">
+                <button type="button" class="btn-lg btn-primary">bàn {{item.tableNo}}</button>
+                </a> <br><br>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-2" >
+        </div>
     </div>
 </div>
