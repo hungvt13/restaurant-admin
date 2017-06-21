@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ReportService } from '../report.service';
+import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
 
 
 @Component({
@@ -8,7 +9,35 @@ import { ReportService } from '../report.service';
   templateUrl: './report-menu.component.html',
   styleUrls: ['./report-menu.component.css']
 })
+
+
 export class ReportMenuComponent implements OnInit {
+  settings = {
+    columns: {
+      id: {
+        title: 'ID',
+        filter: false
+      },
+      name: {
+        title: 'Full Name',
+        filter: false
+      },
+      username: {
+        title: 'User Name',
+        filter: false
+      },
+      email: {
+        title: 'Email',
+        filter: false
+      }
+    }
+  };
+  
+  data = [
+    // ... our data here
+  ];
+  
+  source: LocalDataSource;
 
   public form: FormGroup;
   queryJSON: any;
@@ -20,6 +49,8 @@ export class ReportMenuComponent implements OnInit {
       fromDate: ['', Validators.compose([Validators.required])],
       toDate: [''],
     });
+
+    this.source = new LocalDataSource(this.data); // create the source
    }
 
    public onSubmit(item: any): void {

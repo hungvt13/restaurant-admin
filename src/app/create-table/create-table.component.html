@@ -1,4 +1,6 @@
+
 <app-nav-bar></app-nav-bar>
+
 
 <div class = "container">
     <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a>
@@ -32,6 +34,10 @@
         <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
             <button (click)="deleteTable(item)"type="button" class="btn-lg btn-warning">bàn {{item.tableNo}}</button>
         </div>
+
+        <span class="input-group-addon" #selectElem>$</span>
+        <input class="form-control" id="id_step2-number_2" name="step2-number_2" type="text" data-type="number">
+        <span class="input-group-addon">.00</span>
     </div>
 </div>
 

@@ -4,6 +4,7 @@ import {  JwtHelper} from 'angular2-jwt';
 import { TableService } from '../table.service';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-create-table',
   templateUrl: './create-table.component.html',
@@ -81,7 +82,9 @@ export class CreateTableComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
 }
+
 

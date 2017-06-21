@@ -27,7 +27,7 @@ export class EditItemComponent implements OnInit {
 
     this.form = this.fb.group({
       itemName: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(15)])],
-      itemPrice: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
+      itemPrice: ['', Validators.compose([Validators.required, Validators.pattern('[0-9,]*')])],
     });
 
       try{

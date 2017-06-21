@@ -42,7 +42,6 @@ export class EditMenuComponent implements OnInit {
 
     close() {
         this.modal.close();
-        console.log("HERE");
         this.deleteItem(this.selectedItem);
     }
     

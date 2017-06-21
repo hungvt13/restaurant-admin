@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthHttp ,JwtHelper} from 'angular2-jwt';
+import { AuthService } from '../auth.service';
+
 
 
 @Component({
@@ -19,7 +21,7 @@ export class MyHomeComponent implements OnInit {
   api: string;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(public router: Router, public http: Http, public authHttp: AuthHttp) {
+  constructor(public router: Router, public http: Http, public authHttp: AuthHttp, public auth: AuthService) {
     //this.jwt = localStorage.getItem('id_token');
     //this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);
     this.jwt = localStorage.getItem('id_token');

@@ -3,10 +3,17 @@
   <div class="row">
     <div class="col-sm-2">
       <div>
-      <a routerLink="/select-table"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
+      <a routerLink="/select-table"><button class ="btn-sm btn-success"><-</button></a><br><br>
       </div>
-      <h2>Bàn số: {{this.id}}</h2>
-    </div>
+      <button type="button" class="btn btn-default">Cập nhật bàn số {{this.id}}</button>
+      <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) == 0">Tổng cộng: 0.000 VNĐ</h2>
+      <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) != 0">Tổng cộng: {{this.tableService.getMenuListTotalPrice(this.id)}}.000 VNĐ</h2>
+      <a [routerLink] = "['/receipt', this.id]">
+      <button type="button" class="btn btn-primary">Thanh Toán</button>
+      </a>
+      <button type="button" class="btn btn-danger">Hủy</button>
+      <br><br><br>
+      </div>
     <div class="col-sm-6" >
       <h1>Menu</h1>
       <table class="table table-striped">
@@ -31,15 +38,7 @@
       </table>
     </div>
     <div class="col-sm-4">
-      <h3>Tổng: {{this.tableService.getMenuListTotalItem(this.id)}}</h3>
-      <button type="button" class="btn btn-default">Cập nhật</button>
-      <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) == 0">Tổng cộng: 0.000 VNĐ</h2>
-      <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) != 0">Tổng cộng: {{this.tableService.getMenuListTotalPrice(this.id)}}.000 VNĐ</h2>
-      <a [routerLink] = "['/receipt', this.id]">
-      <button type="button" class="btn btn-primary">Thanh Toán</button>
-      </a>
-      <button type="button" class="btn btn-danger">Hủy</button>
-      <br><br><br>
+      
     </div>
   </div>
 </div>

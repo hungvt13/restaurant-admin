@@ -28,6 +28,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- script for comma adding -->
+  <script> 
+    $(document).ready(function(){
+        $("input.number").keyup(function(event){
+          // skip for arrow keys
+          if(event.which >= 37 && event.which <= 40){
+              event.preventDefault();
+          }
+          var $this = $(this);
+          var num = $this.val().replace(/,/gi, "");
+          var num2 = num.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+          // the following line has been simplified. Revision history contains original.
+          $this.val(num2);
+      });
+    });
+  </script>
 </head>
 <body>
   <app-root></app-root>

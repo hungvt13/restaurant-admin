@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
-
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AppComponent } from './app.component';
 import { MyHomeComponent } from './my-home/my-home.component';
@@ -65,7 +65,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       useHash: false
     }),
     ReactiveFormsModule,
-    Ng2Bs3ModalModule
+    Ng2Bs3ModalModule,
+    Ng2SmartTableModule
   ],
   providers: [
     {

@@ -14,6 +14,7 @@ export class AuthService {
   // Set our Auth0 credentials
   lock = new Auth0Lock('41GLvXahNTywSbRUnFCW3Y6UBw4KjWiF', 'ako2013.auth0.com');
   auth0 = new Auth0({clientID: '41GLvXahNTywSbRUnFCW3Y6UBw4KjWiF', domain: 'ako2013.auth0.com'});
+  public profile: any;
 
   constructor(private router: Router) {
     // Capture the user credentials when the user has succesfully logged in
@@ -27,6 +28,7 @@ export class AuthService {
         }
 
         localStorage.setItem('profile', JSON.stringify(profile));
+        this.profile = profile;
         this.router.navigateByUrl('/home');
       });
 
@@ -59,7 +61,6 @@ export class AuthService {
   login() {
     this.lock.show();
   }
-
   // Logout the user
   logout() {
     // To log out, just remove the token and profile
