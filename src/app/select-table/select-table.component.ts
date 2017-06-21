@@ -37,4 +37,21 @@ export class SelectTableComponent implements OnInit {
     if(this.tableService.menuList != null) this.isAvailable = true;
   }
 
+  public updateStatus(table){
+    console.log(table);
+    table['isActive'] = 1;
+
+    this.tableService.tableStatus(table).subscribe(
+      suc => {
+        //console.log(JSON.stringify(suc.message));
+        console.log(JSON.stringify(suc.message));
+      },
+      err => {console.log(err);}
+    );
+  }
+
+  public refreshList(){
+      this.tableService.refreshTableListService();
+    }
+
 }

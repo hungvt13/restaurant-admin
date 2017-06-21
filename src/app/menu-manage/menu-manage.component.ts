@@ -19,7 +19,7 @@ export class MenuManageComponent implements OnInit {
     if(this.innerWidth >= 764){
       this.insertBreak = true;
     }
-    console.log(this.insertBreak);
+    //console.log(this.insertBreak);
    }
 
   ngOnInit() {

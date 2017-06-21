@@ -13,7 +13,7 @@
       <a [routerLink] = "['/receipt', this.id]">
       <button type="button" class="btn btn-default">Thông tin bàn {{this.id}}</button>
       </a>      
-      <button type="button" class="btn btn-danger pull-right">Hủy</button>
+      <button (click) ="cancelTable()"type="button" class="btn btn-danger pull-right">Hủy</button>
       </div>
 
     <div class="col-sm-9" >

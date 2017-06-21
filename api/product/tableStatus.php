@@ -16,7 +16,7 @@ $db = $database->getConnection();
 $data = json_decode(file_get_contents("php://input"));
 
  // query to insert record
-$sql = "UPDATE Items SET name = '$data->itemName', price = '$data->itemPrice' WHERE uid ='$data->itemUID'";
+$sql = "UPDATE tableList SET active = '$data->isActive' WHERE id ='$data->tableNo'";
 
 
 //prepare query 
@@ -25,11 +25,11 @@ $stmt = $db->prepare($sql);
 //execute query
 if($stmt->execute()){
     echo '{';
-        echo '"message": "Chỉnh sữa Thành công"';
+        echo '"message": "Thành công"';
     echo '}';
 }else{
     echo '{';
-        echo '"message": "Chỉnh sữa thất bại"';
+        echo '"message": "Thất bại"';
     echo '}';
 }
 ?>

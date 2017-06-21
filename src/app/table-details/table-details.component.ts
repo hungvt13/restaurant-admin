@@ -79,4 +79,19 @@ export class TableDetailsComponent implements OnInit {
     }
     if(this.uniqueMenuList.filter(x => x == item)[0].itemQuantity == 0) this.isHighlight[index] = "";
   }
+
+  public cancelTable(){
+    var table = new Object;
+    table['tableNo']= String(this.id);
+    table['isActive'] = 0;
+
+    this.tableService.tableStatus(table).subscribe(
+      suc => {
+        //console.log(JSON.stringify(suc.message));
+        console.log(JSON.stringify(suc.message));
+      },
+      err => {console.log(err);}
+    );
+    this.tableService.refreshTableListService();
+  }
 }

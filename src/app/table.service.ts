@@ -121,7 +121,9 @@ export class TableService {
   //
   //MODIFY 
   //
+  
 
+  //create item in menu list
   public createProduct(product): any {
     var encoded = JSON.stringify(product);
     console.log("create called");
@@ -138,6 +140,7 @@ export class TableService {
     .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
   }
 
+  //delete item in menu list
   public deleteProduct(product): any {
     var encoded = JSON.stringify(product);
     console.log("create called");
@@ -154,6 +157,7 @@ export class TableService {
     .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
   }
 
+  //update item in menu list
    public updateProduct(product): any {
     //console.log(product);
     var encoded = JSON.stringify(product);
@@ -172,6 +176,7 @@ export class TableService {
     //temp.subscribe(x =>{});
   }
 
+  // add / delete tables
   public modifyTable(product): any{
     var encoded = JSON.stringify(product);
     console.log("table modify called");
@@ -188,9 +193,10 @@ export class TableService {
 
   }
 
+  //add reports 
   public addRecord(product): any{
     var encoded = JSON.stringify(product);
-    console.log("add record called");
+    console.log("table status called");
     //console.log(encoded);
     
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -203,6 +209,25 @@ export class TableService {
     ).map(x => x.json())
     .catch((error:any) => Observable.throw(error.json().error || 'Server errorr'));
     
+  }
+
+  //update table status
+   public tableStatus(product): any {
+    //console.log(product);
+    var encoded = JSON.stringify(product);
+    console.log("table update called");
+    
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+ 
+    return this.http.post(
+        "https://kiemsi-khatmau.000webhostapp.com/api/product/tableStatus.php",
+        encoded,
+        options
+    ).map(x => x.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+    //temp.subscribe(x =>{});
   }
 
 

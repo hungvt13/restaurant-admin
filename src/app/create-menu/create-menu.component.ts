@@ -21,9 +21,9 @@ export class CreateMenuComponent implements OnInit {
   api: string;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  private form: FormGroup;
-  private itemName;
-  private itemPrice;
+  public form: FormGroup;
+  public itemName;
+  public itemPrice;
   public mess;
   public mess_content;
   public check;
