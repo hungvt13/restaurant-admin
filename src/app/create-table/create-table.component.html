@@ -3,9 +3,15 @@
 
 
 <div class = "container">
-    <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a>
-    <button (click)="onCreate()" class ="btn btn-primary">Tạo bàn</button>
-    <button (click)="onDelete()" class ="btn btn-primary">Xóa bàn</button><br><br>
+    <a routerLink="/home">
+        <button class ="btn-lg btn-success"><span class="glyphicon glyphicon-arrow-left"></span></button>
+    </a>
+    <button *ngIf="isSelected" (click)="onCreate()" class ="btn btn-basic">Tạo bàn</button> 
+    <button *ngIf="!isSelected" (click)="onCreate()" class ="btn btn-default">Tạo bàn</button> 
+    <button *ngIf="!isSelected" (click)="onDelete()" class ="btn btn-basic">Xóa bàn</button> 
+    <button *ngIf="isSelected" (click)="onDelete()" class ="btn btn-default">Xóa bàn</button> 
+
+    <br><br>
     <!-- jumbotron -->
     <div *ngIf="isCreate" class="jumbotron animated zoomIn">
         
@@ -24,20 +30,27 @@
         </div>
 
         </form>
-
+        <div><h4>Số bàn hiện có: {{tableCount}}</h4></div>
         <div><h4>Status: {{mess}}</h4></div>
     </div><!-- end jumbotron -->
     <div *ngIf="isDelete" class="animated zoomIn">
         <h4> Chọn để xóa bàn </h4>
         <div ><h4>Status: {{mess2}}</h4></div>
         <div class="btn-toolbar" role="toolbar" aria-label="...">
-        <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
-            <button (click)="deleteTable(item)"type="button" class="btn-lg btn-warning">bàn {{item.tableNo}}</button>
+            <div *ngFor="let item of tableService.tableList" class ="btn-group btn-group-lg" role="group">
+                <button (click)="deleteTable(item)"type="button" class="btn-lg btn-default">bàn {{item.tableNo}}</button>
+                <br><br>
+            </div>
         </div>
-
-        <span class="input-group-addon" #selectElem>$</span>
-        <input class="form-control" id="id_step2-number_2" name="step2-number_2" type="text" data-type="number">
-        <span class="input-group-addon">.00</span>
     </div>
-</div>
+
+    <modal #myModal [keyboard]="false" [backdrop]="'static'">
+          <modal-header [show-close]="false">
+              <h4 class="modal-title">Xác nhận xóa</h4>
+          </modal-header>
+          <modal-footer [show-default-buttons]="false">
+             <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dismiss()">Hủy</button>
+             <button type="button" class="btn btn-danger" (click)="close()">Xác nhận</button>
+          </modal-footer>
+      </modal>
 

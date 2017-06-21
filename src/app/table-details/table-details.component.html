@@ -1,21 +1,23 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
   <div class="row">
-    <div class="col-sm-2">
+
+    <div class="col-sm-3">
       <div>
-      <a routerLink="/select-table"><button class ="btn-sm btn-success"><-</button></a><br><br>
+      <a routerLink="/select-table"> 
+        <button class ="btn-lg btn-success"><span class="glyphicon glyphicon-arrow-left"></span></button>
+      </a>
       </div>
-      <button type="button" class="btn btn-default">Cập nhật bàn số {{this.id}}</button>
       <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) == 0">Tổng cộng: 0.000 VNĐ</h2>
       <h2 *ngIf="this.tableService.getMenuListTotalPrice(this.id) != 0">Tổng cộng: {{this.tableService.getMenuListTotalPrice(this.id)}}.000 VNĐ</h2>
       <a [routerLink] = "['/receipt', this.id]">
-      <button type="button" class="btn btn-primary">Thanh Toán</button>
-      </a>
-      <button type="button" class="btn btn-danger">Hủy</button>
-      <br><br><br>
+      <button type="button" class="btn btn-default">Thông tin bàn {{this.id}}</button>
+      </a>      
+      <button type="button" class="btn btn-danger pull-right">Hủy</button>
       </div>
-    <div class="col-sm-6" >
-      <h1>Menu</h1>
+
+    <div class="col-sm-9" >
+      <h2>Menu</h2>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -27,18 +29,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of uniqueMenuList">
+          <tr *ngFor="let item of uniqueMenuList; let i = index" class="{{this.isHighlight[i]}}">
             <td>{{item.itemName}}</td>
             <td>{{item.itemPrice}}.000 VNĐ</td>
             <td> {{item.itemQuantity}} </td>
-            <td><button (click)="increaseClick(item)" type="button" class="btn btn-info">+</button></td>
-            <td><button (click)="decreaseClick(item)" type="button" class="btn btn-warning">-</button></td>
+            <td><button (click)="increaseClick(item,i)" type="button" class="btn btn-info">+</button></td>
+            <td><button (click)="decreaseClick(item,i)" type="button" class="btn btn-warning">-</button></td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="col-sm-4">
-      
     </div>
   </div>
 </div>

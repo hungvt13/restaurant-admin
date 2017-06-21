@@ -84,7 +84,6 @@ export class TableService {
     return this.instanceMenuList.filter(x => x.id == num)[0].list;
   }
 
-
   public addMenuListTotalPrice(num, price){
     this.instanceMenuList.filter(x => x.id == num)[0].totalPrice += price;
     //console.log(this.instanceMenuList);

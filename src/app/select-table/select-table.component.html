@@ -3,7 +3,9 @@
 <div class ="container">
     <div class ="row">
         <div class="col-sm-2" >
-            <a routerLink="/home"><button class ="btn-lg btn-success">Trở lại</button></a><br><br>
+            <a routerLink="/home">
+                <button class ="btn-lg btn-success"><span class="glyphicon glyphicon-arrow-left"></span></button>
+            </a><br><br>
         </div>
         <div class="col-sm-8" >
             <div *ngIf="!isAvailable"> 

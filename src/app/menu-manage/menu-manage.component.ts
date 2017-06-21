@@ -8,9 +8,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MenuManageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  innerHeight: any;
+  innerWidth: any;
+  insertBreak: any;
+
+  constructor(private route: ActivatedRoute) {
+    this.innerHeight = (window.screen.height);
+    this.innerWidth = (window.screen.width);
+    this.insertBreak = false;
+    if(this.innerWidth >= 764){
+      this.insertBreak = true;
+    }
+    console.log(this.insertBreak);
+   }
 
   ngOnInit() {
+    
   }
 
 }

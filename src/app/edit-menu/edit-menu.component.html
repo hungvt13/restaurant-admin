@@ -18,7 +18,6 @@
       <tr *ngFor="let item of this.tableService.menuList">
         <td>{{item.itemName}}</td>
         <td>{{item.itemPrice}}</td>
-         <td>{{item.itemUID}}</td>
         <td><a [routerLink] = "['../edit-item', item.itemUID]"><button (click)="editClick(item)" type="button" class="btn btn-info">chỉnh</button></a></td>
         <td><button (click)="open(item)" type="button" class="btn btn-warning">xóa</button></td>
       </tr>

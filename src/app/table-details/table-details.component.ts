@@ -16,6 +16,8 @@ export class TableDetailsComponent implements OnInit {
 
   stringPrice: string
 
+  isHighlight: any = [];
+
   constructor(private route: ActivatedRoute, tableService: TableService) {
     this.tableService = tableService;
 
@@ -28,7 +30,13 @@ export class TableDetailsComponent implements OnInit {
        // In a real app: dispatch action to load the details here.
        this.tableService.addMenuList(this.id);
        this.uniqueMenuList = this.tableService.getMenuList(this.id);
-    });  
+
+    }); 
+    //initiate array for storing highlights
+    for(var item in this.tableService.menuList){
+         //console.log(item);
+         this.isHighlight.push("");
+    } 
   }
 
   ngDoCheck(){
@@ -39,20 +47,23 @@ export class TableDetailsComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
-  private increaseClick(item){
-
+  private increaseClick(item,index){
+    //get the specific object and increase the quantity
     this.uniqueMenuList.filter(x => x == item)[0].itemQuantity += 1;
-
+    
     //calculate total price
     let totalPrice = 0;
     totalPrice = parseInt(this.uniqueMenuList.filter(x => x == item)[0].itemPrice);
     this.tableService.addMenuListTotalPrice(this.id,totalPrice);
 
     this.stringPrice = this.tableService.getMenuListTotalPrice(this.id);
+
+    //put the highlight index 
+    this.isHighlight[index] = "success";
   }
 
 
-  private decreaseClick(item){
+  private decreaseClick(item,index){
 
     //limit not below 0
     if(this.uniqueMenuList.filter(x => x == item)[0].itemQuantity > 0){
@@ -63,6 +74,9 @@ export class TableDetailsComponent implements OnInit {
        this.tableService.subMenuListTotalPrice(this.id,totalPrice);
 
        this.stringPrice = this.tableService.getMenuListTotalPrice(this.id);
+
+       //put the highlight index 
     }
+    if(this.uniqueMenuList.filter(x => x == item)[0].itemQuantity == 0) this.isHighlight[index] = "";
   }
 }
