@@ -12,7 +12,7 @@
 
       <div class="form-group" [ngClass]="{'has-error':!form.controls['itemPrice'].valid && form.controls['itemPrice'].touched}">
         <label>Giá:</label>
-        <input [(ngModel)] ="itemPrice" class="form-control" data-type="number" placeholder="25" [formControl]="form.controls['itemPrice']"  >
+        <input [(ngModel)] ="itemPrice" class="form-control number DauPhay" data-type="number" placeholder="25" [formControl]="form.controls['itemPrice']"  >
         <div *ngIf="form.controls['itemPrice'].hasError('required') && form.controls['itemPrice'].touched" class="alert alert-danger">Vui lòng nhập giá tiền</div>
         <div *ngIf="form.controls['itemPrice'].hasError('pattern') && form.controls['itemPrice'].touched" class="alert alert-danger">Số không hợp lệ</div> 
       </div>
@@ -20,7 +20,6 @@
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Đổi</button>
       </div>
-
     </form>
 
     <div *ngIf="mess != null"><h4>Status: {{mess}}</h4></div>

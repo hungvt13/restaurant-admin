@@ -1,3 +1,4 @@
+
 <div class="jumbotron animated zoomIn">
     <h2>Tạo món mới</h2>
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
@@ -13,7 +14,7 @@
 
       <div class="form-group" [ngClass]="{'has-error':!form.controls['itemPrice'].valid && form.controls['itemPrice'].touched}">
         <label>Giá:</label>
-        <input [(ngModel)] ="itemPrice" class="form-control number" type="text" placeholder="25" [formControl]="form.controls['itemPrice']"  >
+        <input [(ngModel)] ="itemPrice" class="form-control number DauPhay " type="text" placeholder="25" [formControl]="form.controls['itemPrice']"  >
         <div *ngIf="form.controls['itemPrice'].hasError('required') && form.controls['itemPrice'].touched" class="alert alert-danger">Vui lòng nhập giá tiền</div>
         <div *ngIf="form.controls['itemPrice'].hasError('pattern') && form.controls['itemPrice'].touched" class="alert alert-danger">Số không hợp lệ</div> 
       </div>

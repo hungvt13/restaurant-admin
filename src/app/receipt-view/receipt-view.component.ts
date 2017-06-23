@@ -49,6 +49,7 @@ export class ReceiptViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    //window.print(); 
     
   }
 

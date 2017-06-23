@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AppComponent } from './app.component';
 import { MyHomeComponent } from './my-home/my-home.component';
@@ -32,6 +31,9 @@ import { EditItemComponent } from './edit-item/edit-item.component';
 
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { ReportMenuComponent } from './report-menu/report-menu.component';
+
+import { DataTableModule } from "angular2-datatable";
+
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -66,7 +68,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     }),
     ReactiveFormsModule,
     Ng2Bs3ModalModule,
-    Ng2SmartTableModule
+    DataTableModule
   ],
   providers: [
     {

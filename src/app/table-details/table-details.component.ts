@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TableService } from '../table.service';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+
 
 @Component({
   selector: 'app-table-details',
@@ -18,9 +20,16 @@ export class TableDetailsComponent implements OnInit {
 
   isHighlight: any = [];
 
-  constructor(private route: ActivatedRoute, tableService: TableService) {
-    this.tableService = tableService;
+  receiptItemList: any;
+  finalList: any = [];
+  finalPrice: number = 0;
+  finalItems: number = 0;
+  isInfo = false;
 
+  constructor(private route: ActivatedRoute, tableService: TableService, private router: Router) {
+    this.tableService = tableService;
+    this.tableService.addMenuList(this.id);
+    this.uniqueMenuList = this.tableService.getMenuList(this.id);
    }
 
   ngOnInit() {
@@ -41,6 +50,7 @@ export class TableDetailsComponent implements OnInit {
 
   ngDoCheck(){
     //console.log(this.uniqueMenuList);
+    
   }
 
   ngOnDestroy() {
@@ -81,6 +91,7 @@ export class TableDetailsComponent implements OnInit {
   }
 
   public cancelTable(){
+    console.log("OPNE");
     var table = new Object;
     table['tableNo']= String(this.id);
     table['isActive'] = 0;
@@ -89,9 +100,62 @@ export class TableDetailsComponent implements OnInit {
       suc => {
         //console.log(JSON.stringify(suc.message));
         console.log(JSON.stringify(suc.message));
+        this.router.navigate(['./select-table']);
       },
       err => {console.log(err);}
     );
+    //this.tableService.instanceMenuList.filter(x => x.id == this.id)[0].list = [];
+    this.finalList = [];
+    this.receiptItemList = [];
     this.tableService.refreshTableListService();
+    for(var item in this.uniqueMenuList)
+    {
+      this.uniqueMenuList[item].itemQuantity = 0;
+    }
   }
+
+  getList(){
+    try{
+          this.receiptItemList = this.tableService.getMenuList(this.id);
+          this.finalPrice = this.tableService.getMenuListTotalPrice(this.id);
+          this.finalItems = this.tableService.getMenuListTotalItem(this.id);
+          //trying to get the list of items with quantity > 0
+          for(var item in this.receiptItemList){
+            if(this.receiptItemList[item].itemQuantity != 0) this.finalList.push(this.receiptItemList[item]);
+          }
+       }catch(e) {}
+  }
+
+  public info(){
+    this.getList();
+    this.isInfo = true;
+  }
+
+  public switch(){
+    this.isInfo = false;
+    this.finalList = [];
+  }
+
+    //format number to currency 
+  public numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  //ModalComponent
+  @ViewChild('myModal')
+    modal: ModalComponent;
+    animation: boolean = true;    
+
+    close() {
+        this.modal.close();
+        this.cancelTable();
+    }
+    
+    open() { 
+        this.modal.open();
+    }
+
+    dismiss(){
+      this.modal.dismiss();
+    }
 }

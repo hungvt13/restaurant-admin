@@ -35,7 +35,8 @@ export class TableService {
                     this.tableList.push(new Table(id,active2));
                   }
                   //console.log(response);
-            });            
+            },
+            error => {alert(error)});            
   }
   // get the list of foods for the menu
   private getMenuListService(){
@@ -51,7 +52,8 @@ export class TableService {
                     this.menuList.push(new Item(name,price,uid));
                   }
                   //console.log(response);
-            });
+            },
+            error => {alert(error)});   
   }
 
   //fetch new data
@@ -69,6 +71,8 @@ export class TableService {
 
   //add an instance of menu based on table ID
   public addMenuList(num){
+
+    console.log(num);
 
     //clone object arary
     if(this.instanceMenuList.filter(x => x.id == num)[0] != null){

@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angular2-datatable": "^0.6.0",
     "angularfire2": "^4.0.0-rc.1",
     "animate.css": "^3.5.2",
     "auth0-js": "^8.7.0",

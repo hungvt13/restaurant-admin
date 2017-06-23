@@ -36,6 +36,11 @@ export class EditMenuComponent implements OnInit {
     this.tableService.setSingleItem(item);
   }
 
+  //format number to currency 
+  private numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   @ViewChild('myModal')
     modal: ModalComponent;
     animation: boolean = true;    

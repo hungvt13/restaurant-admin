@@ -45,7 +45,7 @@ export class CreateMenuComponent implements OnInit {
   public onSubmit(item: any): void {
     console.log('Reactive Form Data: ');
     //format input string for price
-    item['itemPrice'] = this.numberWithCommas(item.itemPrice.replace(/\,/g,''));;
+    item['itemPrice'] = item.itemPrice.replace(/\,/g,'');
 
     //get next available item UID
     var get_last_id = this.tableService.menuList[this.tableService.menuList.length-1];
@@ -57,7 +57,7 @@ export class CreateMenuComponent implements OnInit {
     this.open();
 
 
-    //Adds item information to the databse
+    /*Adds item information to the databse
     this.tableService.createProduct(item).subscribe(
       suc => {
 
@@ -66,7 +66,7 @@ export class CreateMenuComponent implements OnInit {
         this.tableService.refreshMenuListService();
       },
       err => {console.log(err);}
-    );
+    );*/
   }
 
   //decide status of the request
@@ -78,22 +78,17 @@ export class CreateMenuComponent implements OnInit {
 
     console.log(temp.message);
     if(temp.message == 0){
-      console.log("HERE1");
+      //console.log("HERE1");
       this.mess = "Thất bại";
       this.mess_content = "Thử lại ?";
       this.check = false;
     }else if(temp.message == 1 ){
-      console.log("HERE2");
+      //console.log("HERE2");
       this.mess = "Thành công";
       this.mess_content = "Tạo thêm món mới ?";
       this.check = true;
       this.form.reset();
     }
-  }
-
-  //format number to currency 
-  private numberWithCommas(x) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   
   ngOnInit() {

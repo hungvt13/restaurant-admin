@@ -26,7 +26,7 @@ export class EditItemComponent implements OnInit {
     this.tableService = tableService;
 
     this.form = this.fb.group({
-      itemName: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(15)])],
+      itemName: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)])],
       itemPrice: ['', Validators.compose([Validators.required, Validators.pattern('[0-9,]*')])],
     });
 
@@ -42,6 +42,7 @@ export class EditItemComponent implements OnInit {
    private onSubmit(item: any): void {
     console.log('Reactive Form Data: ');
     item['itemUID'] = this.itemUID;
+    item['itemPrice'] = item.itemPrice.replace(/\,/g,'');
     console.log(item);
     //Adds item information to the databse
 
@@ -53,6 +54,13 @@ export class EditItemComponent implements OnInit {
       },
       err => {console.log(err);}
     );
+
+    setTimeout(()=>{this.router.navigate(['../../edit'],{relativeTo: this.route});},1000);
+  }
+
+  //format number to currency 
+  private numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   ngOnInit() {

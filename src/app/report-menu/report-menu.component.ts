@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ReportService } from '../report.service';
-import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
 
 
 @Component({
@@ -37,7 +36,6 @@ export class ReportMenuComponent implements OnInit {
     // ... our data here
   ];
   
-  source: LocalDataSource;
 
   public form: FormGroup;
   queryJSON: any;
@@ -50,7 +48,6 @@ export class ReportMenuComponent implements OnInit {
       toDate: [''],
     });
 
-    this.source = new LocalDataSource(this.data); // create the source
    }
 
    public onSubmit(item: any): void {

@@ -3,3 +3,14 @@
     width: 100%;
     background-color: ghostwhite;
 }
+
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 80mm; 
+  }
+  /* ... the rest of the rules ... */
+}
