@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule }      from '@angular/common';
+
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 
@@ -68,7 +70,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     }),
     ReactiveFormsModule,
     Ng2Bs3ModalModule,
-    DataTableModule
+    DataTableModule,
+    CommonModule,
   ],
   providers: [
     {
